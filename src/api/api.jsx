@@ -3,7 +3,7 @@
 import axios from 'axios';
 
 // Base URL for the backend server
-const BASE_URL = 'http://localhost:8000';
+const BASE_URL = 'https://muso-backend.vercel.app';
 
 /**
  * API class for interacting with YouTube endpoints

@@ -11,12 +11,12 @@ export default function GridList() {
     const getHomePage = async (url) => {
         YouTubeAPI.getHomepageVideos()
             .then((data) => {
-                console.log('Homepage Videos:', data);
+                // console.log('Homepage Videos:', data);
                 Setlist(data)
 
             })
             .catch((error) => {
-                console.error(error.message);
+                // console.error(error.message);
             });
     };
 
@@ -33,7 +33,7 @@ export default function GridList() {
     return (
         <div className="gap-2 grid grid-cols-2 sm:grid-cols-6">
             {list.map((item, index) => (
-                /* eslint-disable no-console */
+                // /* eslint-disable no-console */
                 <Card isFooterBlurred key={index} isPressable shadow="sm" className="border-none" radius="lg" onPress={() => handlePlaySong(item.url)}>
                     <Image
                         alt="Woman listing to music"

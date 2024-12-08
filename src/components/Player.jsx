@@ -186,7 +186,7 @@ const MusicPlayer = ({ isOpen, onClose, songUrl }) => {
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
     const [liked, setLiked] = useState(false);
-    const [title,SetTitle] = useState("Now Playing");
+    const [title,SetTitle] = useState("Playing");
     const [thumbnail,Setthumbnail] = useState("https://nextui.org/images/album-cover.png");
 
     const togglePlayPause = () => {
@@ -211,14 +211,14 @@ const MusicPlayer = ({ isOpen, onClose, songUrl }) => {
         if (playerRef.current) {
             const newUrl = playerRef.current.getInternalPlayer()?.getVideoUrl();
             // console.log(newUrl)
-            getVideoDetails(newUrl)
+            // getVideoDetails(newUrl)
         }
     };
 
     const getVideoDetails = async (url) => {
         YouTubeAPI.getVideoDetails(url)
             .then((data) => {
-                console.log('Video Details:', data);
+                // console.log('Video Details:', data);
                 SetTitle(data.title)
                 Setthumbnail(data.thumbnail)
             })
@@ -247,39 +247,19 @@ const MusicPlayer = ({ isOpen, onClose, songUrl }) => {
         <div className="popup-player">
             <Card
                 isBlurred
-                className="border-none bg-background/60 dark:bg-default-100/50 max-w-[410px]"
+                className="border-none bg-background/60 dark:bg-default-100/50 min-w-[310px]"
                 shadow="sm"
             >
                 <CardBody>
                     <div className="grid grid-cols-6 md:grid-cols-12 gap-6 md:gap-4 items-center justify-center">
-                        <div className="relative col-span-6 md:col-span-4">
-                            <Image
-                                alt="Album cover"
-                                className="object-cover"
-                                height={80}
-                                shadow="md"
-                                src={thumbnail}
-                                width="100%"
-                            />
-                        </div>
+                        
 
-                        <div className="flex flex-col col-span-6 md:col-span-8">
+                        <div className="flex flex-col col-span-6 md:col-span-8" style={{marginRight:-80}}>
                             <div className="flex justify-between items-start">
                                 <div className="flex flex-col gap-0">
                                     <h3 className="font-semibold text-foreground/90">{title}</h3>
                                 </div>
-                                <Button
-                                    isIconOnly
-                                    className="text-default-900/60 data-[hover]:bg-foreground/10 -translate-y-2 translate-x-2"
-                                    radius="full"
-                                    variant="light"
-                                    onPress={() => setLiked((v) => !v)}
-                                >
-                                    <HeartIcon
-                                        className={liked ? "[&>path]:stroke-transparent" : ""}
-                                        fill={liked ? "currentColor" : "none"}
-                                    />
-                                </Button>
+                                
                             </div>
 
                             <div className="flex flex-col mt-3 gap-1">
@@ -296,22 +276,22 @@ const MusicPlayer = ({ isOpen, onClose, songUrl }) => {
                             </div>
 
                             <div className="flex w-full items-center justify-center">
-                                <Button
+                                {/* <Button
                                     isIconOnly
                                     className="data-[hover]:bg-foreground/10"
                                     radius="full"
                                     variant="light"
                                 >
                                     <RepeatOneIcon className="text-foreground/80" />
-                                </Button>
-                                <Button
+                                </Button> */}
+                                {/* <Button
                                     isIconOnly
                                     className="data-[hover]:bg-foreground/10"
                                     radius="full"
                                     variant="light"
                                 >
                                     <PreviousIcon />
-                                </Button>
+                                </Button> */}
                                 <Button
                                     isIconOnly
                                     className="w-auto h-auto data-[hover]:bg-foreground/10"
@@ -323,7 +303,7 @@ const MusicPlayer = ({ isOpen, onClose, songUrl }) => {
                                     {/* <PlayCircleIcon size={54} /> */}
 
                                 </Button>
-                                <Button
+                                {/* <Button
                                     isIconOnly
                                     className="data-[hover]:bg-foreground/10"
                                     radius="full"
@@ -338,7 +318,7 @@ const MusicPlayer = ({ isOpen, onClose, songUrl }) => {
                                     variant="light"
                                 >
                                     <ShuffleIcon className="text-foreground/80" />
-                                </Button>
+                                </Button> */}
                             </div>
                         </div>
                     </div>

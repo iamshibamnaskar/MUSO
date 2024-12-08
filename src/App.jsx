@@ -109,38 +109,38 @@ export default function App() {
   const getAutocompletes = async (txt) => {
     YouTubeAPI.getAutocompletes(txt)
       .then((data) => {
-        console.log('Homepage Videos:', data);
+        // console.log('Homepage Videos:', data);
         SetUsers(data)
 
       })
       .catch((error) => {
-        console.error(error.message);
+        // console.error(error.message);
       });
   };
 
   const getSearchResults = async (txt) => {
-    console.log("SEARCH")
+    // console.log("SEARCH")
     YouTubeAPI.getSearchResults(txt)
       .then((data) => {
-        console.log('Homepage Videos:', data);
+        // console.log('Homepage Videos:', data);
         setsearchopen(true)
         Setsearch(data)
 
       })
       .catch((error) => {
-        console.error(error.message);
+        // console.error(error.message);
       });
   };
 
   const getHomePage = async (url) => {
     YouTubeAPI.getSearchResults("Rock band metal")
       .then((data) => {
-        console.log('Homepage Videos:', data);
+        // console.log('Homepage Videos:', data);
         SetList([data[0], data[1], data[2]])
 
       })
       .catch((error) => {
-        console.error(error.message);
+        // console.error(error.message);
       });
   };
 
@@ -239,7 +239,7 @@ export default function App() {
             )}
           </Autocomplete>
 
-          <Dropdown placement="bottom-end">
+          {/* <Dropdown placement="bottom-end">
             <DropdownTrigger>
               <Avatar
                 isBordered
@@ -262,7 +262,7 @@ export default function App() {
                 Log Out
               </DropdownItem>
             </DropdownMenu>
-          </Dropdown>
+          </Dropdown> */}
         </NavbarContent>
       </Navbar>
       {!searchopen && <div style={{ flexGrow: 1, padding: 20 }}>

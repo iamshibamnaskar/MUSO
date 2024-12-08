@@ -15,13 +15,14 @@ class YouTubeAPI {
      * @returns {Promise<object>} - The video data
      */
     static async getVideoDetails(videoUrl) {
+        const id = videoUrl.split("=")[1]
         try {
             const response = await axios.get(`${BASE_URL}/video`, {
-                params: { url: videoUrl },
+                params: { url: id },
             });
             return response.data;
         } catch (error) {
-            console.error('Error fetching video details:', error);
+            // console.error('Error fetching video details:', error);
             throw new Error('Failed to fetch video details.');
         }
     }
@@ -33,7 +34,7 @@ class YouTubeAPI {
             });
             return response.data;
         } catch (error) {
-            console.error('Error fetching video details:', error);
+            // console.error('Error fetching video details:', error);
             throw new Error('Failed to fetch video details.');
         }
     }
@@ -45,7 +46,7 @@ class YouTubeAPI {
             });
             return response.data;
         } catch (error) {
-            console.error('Error fetching video details:', error);
+            // console.error('Error fetching video details:', error);
             throw new Error('Failed to fetch video details.');
         }
     }
@@ -59,7 +60,7 @@ class YouTubeAPI {
             const response = await axios.get(`${BASE_URL}/homepage`);
             return response.data.videos;
         } catch (error) {
-            console.error('Error fetching homepage videos:', error);
+            // console.error('Error fetching homepage videos:', error);
             throw new Error('Failed to fetch homepage videos.');
         }
     }

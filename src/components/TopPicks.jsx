@@ -6,12 +6,18 @@ import LoadingSpinner from './LoadingSpinner';
 
 const TopPicks = ({ songs }) => {
   const [isLoading, setIsLoading] = useState(true);
+  const { setPlayerOpen, setCurrentSong } = usePlayerStore();
 
   useEffect(() => {
     if (songs && songs.length > 0) {
       setIsLoading(false);
     }
   }, [songs]);
+
+  const handlePlaySong = (url) => {
+    setCurrentSong(url);
+    setPlayerOpen(true);
+  };
 
   if (isLoading) {
     return (
@@ -21,12 +27,6 @@ const TopPicks = ({ songs }) => {
       </div>
     );
   }
-  const { setPlayerOpen, setCurrentSong } = usePlayerStore();
-
-  const handlePlaySong = (url) => {
-    setCurrentSong(url);
-    setPlayerOpen(true);
-  };
 
   return (
     <div className="top-picks-section mb-8">

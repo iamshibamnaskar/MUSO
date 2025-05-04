@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 import { Navbar, NavbarBrand, NavbarContent, Input } from "@nextui-org/react";
+import TopPicks from './components/TopPicks';
 import MusicPlayer from './components/Player';
 import GridList from './components/GridList';
 import SearchResultsList from './components/search';

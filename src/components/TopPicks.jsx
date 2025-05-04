@@ -1,9 +1,26 @@
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card, CardBody, Image, ScrollShadow } from "@nextui-org/react";
 import usePlayerStore from '../usePlayerStore';
+import LoadingSpinner from './LoadingSpinner';
 
 const TopPicks = ({ songs }) => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    if (songs && songs.length > 0) {
+      setIsLoading(false);
+    }
+  }, [songs]);
+
+  if (isLoading) {
+    return (
+      <div className="top-picks-section mb-8">
+        <h2 className="text-2xl font-bold mb-4">Top Picks</h2>
+        <LoadingSpinner />
+      </div>
+    );
+  }
   const { setPlayerOpen, setCurrentSong } = usePlayerStore();
 
   const handlePlaySong = (url) => {

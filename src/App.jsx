@@ -58,9 +58,11 @@ export default function App() {
   return (
     <div className="app-container">
       <div className="sidebar">
-        <NavbarBrand className="py-4 px-6">
-          <h1 className="text-xl font-bold">MUSO</h1>
-        </NavbarBrand>
+        <Navbar>
+          <NavbarBrand className="py-4 px-6">
+            <h1 className="text-xl font-bold">MUSO</h1>
+          </NavbarBrand>
+        </Navbar>
         <div className="sidebar-menu">
           <a href="#" className="sidebar-item active">Home</a>
           <a href="#" className="sidebar-item">Trending</a>

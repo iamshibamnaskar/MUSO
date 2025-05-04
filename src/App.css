@@ -1,0 +1,88 @@
+
+.app-container {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  height: 100vh;
+  background-color: #121212;
+  color: white;
+}
+
+.sidebar {
+  background-color: #000000;
+  border-right: 1px solid #282828;
+}
+
+.sidebar-menu {
+  padding: 1rem;
+}
+
+.sidebar-item {
+  display: block;
+  padding: 0.75rem 1.5rem;
+  color: #b3b3b3;
+  text-decoration: none;
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+  transition: all 0.2s;
+}
+
+.sidebar-item:hover {
+  color: white;
+  background-color: #282828;
+}
+
+.sidebar-item.active {
+  color: white;
+  background-color: #282828;
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.navbar {
+  background-color: transparent !important;
+  border-bottom: 1px solid #282828;
+}
+
+.search-container {
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.content-area {
+  flex: 1;
+  overflow-y: auto;
+  padding: 2rem;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+}
+
+.music-grid {
+  padding: 1rem 0;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #121212;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #282828;
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #383838;
+}

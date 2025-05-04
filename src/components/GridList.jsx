@@ -1,52 +1,53 @@
-import { Card, CardBody, CardFooter, Image, Button } from "@nextui-org/react";
+
+import { Card, CardBody, Image } from "@nextui-org/react";
 import { useEffect, useState } from "react";
 import YouTubeAPI from "../api/api";
 import usePlayerStore from "../usePlayerStore";
 
 export default function GridList() {
-    const [list, Setlist] = useState([])
-    const { setPlayerOpen, setCurrentSong } = usePlayerStore();
+  const [list, setList] = useState([]);
+  const { setPlayerOpen, setCurrentSong } = usePlayerStore();
 
+  const getHomePage = async () => {
+    try {
+      const data = await YouTubeAPI.getHomepageVideos();
+      setList(data);
+    } catch (error) {
+      console.error('Failed to fetch homepage:', error);
+    }
+  };
 
-    const getHomePage = async (url) => {
-        YouTubeAPI.getHomepageVideos()
-            .then((data) => {
-                // console.log('Homepage Videos:', data);
-                Setlist(data)
+  const handlePlaySong = (url) => {
+    setCurrentSong(url);
+    setPlayerOpen(true);
+  };
 
-            })
-            .catch((error) => {
-                // console.error(error.message);
-            });
-    };
+  useEffect(() => {
+    getHomePage();
+  }, []);
 
-    const handlePlaySong = (url) => {
-        setCurrentSong(url); // Example song URL
-        setPlayerOpen(true);
-    };
-
-
-    useEffect(() => {
-        getHomePage()
-    }, []);
-
-    return (
-        <div className="gap-2 grid grid-cols-2 sm:grid-cols-6">
-            {list.map((item, index) => (
-                // /* eslint-disable no-console */
-                <Card isFooterBlurred key={index} isPressable shadow="sm" className="border-none" radius="lg" onPress={() => handlePlaySong(item.url)}>
-                    <Image
-                        alt="Woman listing to music"
-                        className="object-cover"
-                        height={200}
-                        src={item.thumbnail}
-                        width={200}
-                    />
-                    <CardFooter className="justify-between before:bg-white/10 border-white/20 border-1 overflow-hidden py-1 absolute before:rounded-xl rounded-large bottom-1 w-[calc(100%_-_8px)] shadow-small ml-1 z-10">
-                        <p className="text-tiny text-white/80">{item.title.slice(0, 50)}</p>
-                    </CardFooter>
-                </Card>
-            ))}
-        </div>
-    );
+  return (
+    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+      {list.map((item, index) => (
+        <Card
+          key={index}
+          isPressable
+          onPress={() => handlePlaySong(item.url)}
+          className="bg-content1 hover:scale-105 transition-transform"
+        >
+          <CardBody className="p-0">
+            <Image
+              alt={item.title}
+              className="object-cover aspect-square w-full"
+              src={item.thumbnail}
+            />
+            <div className="p-3">
+              <p className="font-semibold text-small line-clamp-2">{item.title}</p>
+              <p className="text-tiny text-default-500">{item.channel.name}</p>
+            </div>
+          </CardBody>
+        </Card>
+      ))}
+    </div>
+  );
 }

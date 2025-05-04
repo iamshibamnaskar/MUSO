@@ -38,6 +38,7 @@ const SearchIcon = ({ size = 24, strokeWidth = 1.5, width, height, ...props }) =
 export default function App() {
   const [searchResults, setSearchResults] = useState([]);
   const [isSearching, setIsSearching] = useState(false);
+  const [showFavorites, setShowFavorites] = useState(false);
   const { isPlayerOpen, currentSong, setPlayerOpen, setCurrentSong } = usePlayerStore();
 
   const handleSearch = async (query) => {
@@ -64,10 +65,8 @@ export default function App() {
           </NavbarBrand>
         </Navbar>
         <div className="sidebar-menu">
-          <a href="#" className="sidebar-item active">Home</a>
-          <a href="#" className="sidebar-item">Trending</a>
-          <a href="#" className="sidebar-item">Library</a>
-          <a href="#" className="sidebar-item">History</a>
+          <a href="#" className={`sidebar-item ${!showFavorites ? 'active' : ''}`} onClick={() => setShowFavorites(false)}>Home</a>
+          <a href="#" className={`sidebar-item ${showFavorites ? 'active' : ''}`} onClick={() => setShowFavorites(true)}>Favorites</a>
         </div>
       </div>
 
@@ -91,6 +90,11 @@ export default function App() {
         <div className="content-area">
           {isSearching ? (
             <SearchResultsList data={searchResults} />
+          ) : showFavorites ? (
+            <div className="music-grid">
+              <h2 className="section-title">Your Favorites</h2>
+              <p className="text-center text-gray-500 mt-8">No favorites yet</p>
+            </div>
           ) : (
             <div className="music-grid">
               <h2 className="section-title">Recommended for you</h2>

@@ -1,7 +1,8 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import ReactPlayer from 'react-player';
 import './MusicPlayer.css';
 import { Card, CardBody, Image, Spinner } from "@nextui-org/react";
+import { usePlayerStore } from './PlayerStore'; // Assuming this store exists
 
 const MusicPlayer = ({ isOpen, songUrl }) => {
   const playerRef = useRef(null);
@@ -11,6 +12,13 @@ const MusicPlayer = ({ isOpen, songUrl }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [title, setTitle] = useState("Now Playing");
   const [thumbnail, setThumbnail] = useState("https://i.imgur.com/QuXh5sN.png");
+  const { currentThumbnail } = usePlayerStore();
+
+  useEffect(() => {
+    if (currentThumbnail) {
+      setThumbnail(currentThumbnail);
+    }
+  }, [currentThumbnail]);
 
   const togglePlayPause = () => {
     setIsPlaying(!isPlaying);

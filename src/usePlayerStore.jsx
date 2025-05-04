@@ -3,9 +3,10 @@ import { create } from 'zustand';
 const usePlayerStore = create((set) => ({
   isPlayerOpen: false,
   currentSong: '',
+  currentThumbnail: '',
   setPlayerOpen: (isOpen) => set({ isPlayerOpen: isOpen }),
-  setCurrentSong: (songUrl) => set({ currentSong: songUrl }),
-  closePlayer: () => set({ isPlayerOpen: false, currentSong: '' }),
+  setCurrentSong: (songUrl, thumbnail = '') => set({ currentSong: songUrl, currentThumbnail: thumbnail }),
+  closePlayer: () => set({ isPlayerOpen: false, currentSong: '', currentThumbnail: '' }),
 }));
 
 export default usePlayerStore;

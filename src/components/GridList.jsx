@@ -22,8 +22,8 @@ export default function GridList() {
     }
   };
 
-  const handlePlaySong = (url) => {
-    setCurrentSong(url);
+  const handlePlaySong = (url, thumbnail) => {
+    setCurrentSong(url, thumbnail);
     setPlayerOpen(true);
   };
 

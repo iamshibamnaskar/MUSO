@@ -40,7 +40,20 @@ export default function App() {
   const [searchResults, setSearchResults] = useState([]);
   const [isSearching, setIsSearching] = useState(false);
   const [showFavorites, setShowFavorites] = useState(false);
+  const [songsList, setSongsList] = useState([]);
   const { isPlayerOpen, currentSong, setPlayerOpen, setCurrentSong } = usePlayerStore();
+
+  useEffect(() => {
+    const fetchSongs = async () => {
+      try {
+        const data = await YouTubeAPI.getHomepageVideos();
+        setSongsList(data);
+      } catch (error) {
+        console.error('Failed to fetch songs:', error);
+      }
+    };
+    fetchSongs();
+  }, []);
 
   const handleSearch = async (query) => {
     if (query.length < 3) {
@@ -98,7 +111,7 @@ export default function App() {
             </div>
           ) : (
             <div className="music-grid">
-              <TopPicks songs={list} />
+              <TopPicks songs={songsList} />
               <h2 className="section-title">Recommended for you</h2>
               <GridList />
             </div>

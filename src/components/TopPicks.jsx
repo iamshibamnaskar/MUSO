@@ -27,7 +27,7 @@ const TopPicks = ({ songs }) => {
                 <Image
                   alt={song.title}
                   className="object-cover w-full aspect-square"
-                  src={song.thumbnail.url}
+                  src={song.thumbnail?.url || song.thumbnail}
                 />
                 <div className="p-3">
                   <p className="font-semibold text-small line-clamp-1">{song.title}</p>

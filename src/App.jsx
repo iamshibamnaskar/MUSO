@@ -79,8 +79,8 @@ export default function App() {
   };
 
   return (
-    <div className="app-container">
-      <div className="sidebar">
+    <div className={`app-container ${isDark ? 'dark' : 'light'}`}>
+      <div className={`sidebar ${isDark ? 'dark' : 'light'}`}>
         <Navbar>
           <NavbarBrand className="py-4 px-6">
             <h1 className="text-xl font-bold">MUSO</h1>

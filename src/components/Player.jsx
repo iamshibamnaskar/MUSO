@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import ReactPlayer from 'react-player';
 import './MusicPlayer.css';
 import { Card, CardBody, Image, Spinner } from "@nextui-org/react";
-import { usePlayerStore } from './PlayerStore'; // Assuming this store exists
+import usePlayerStore from '../usePlayerStore'; 
 
 const MusicPlayer = ({ isOpen, songUrl }) => {
   const playerRef = useRef(null);

@@ -43,12 +43,6 @@ export default function App() {
   const [isSearching, setIsSearching] = useState(false);
   const [showFavorites, setShowFavorites] = useState(false);
   const [songsList, setSongsList] = useState([]);
-  const [isDark, setIsDark] = useState(true);
-
-  useEffect(() => {
-    document.documentElement.classList.toggle('dark', isDark);
-    document.documentElement.classList.toggle('light', !isDark);
-  }, [isDark]);
   const { isPlayerOpen, currentSong, setPlayerOpen, setCurrentSong } = usePlayerStore();
 
   useEffect(() => {
@@ -79,8 +73,8 @@ export default function App() {
   };
 
   return (
-    <div className={`app-container ${isDark ? 'dark' : 'light'}`}>
-      <div className={`sidebar ${isDark ? 'dark' : 'light'}`}>
+    <div className="app-container">
+      <div className="sidebar">
         <Navbar>
           <NavbarBrand className="py-4 px-6">
             <h1 className="text-xl font-bold">MUSO</h1>
@@ -89,14 +83,6 @@ export default function App() {
         <div className="sidebar-menu">
           <a href="#" className={`sidebar-item ${!showFavorites ? 'active' : ''}`} onClick={() => setShowFavorites(false)}>Home</a>
           <a href="#" className={`sidebar-item ${showFavorites ? 'active' : ''}`} onClick={() => setShowFavorites(true)}>Favorites</a>
-          <Button
-            className="theme-toggle-btn"
-            isIconOnly
-            variant="light"
-            onClick={() => setIsDark(!isDark)}
-          >
-            {isDark ? <SunIcon /> : <MoonIcon />}
-          </Button>
         </div>
       </div>
 

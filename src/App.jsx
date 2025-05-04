@@ -97,6 +97,7 @@ export default function App() {
             </div>
           ) : (
             <div className="music-grid">
+              <TopPicks songs={list} />
               <h2 className="section-title">Recommended for you</h2>
               <GridList />
             </div>

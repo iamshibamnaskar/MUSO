@@ -45,6 +45,23 @@
 @keyframes sound {
   0% {
     height: 20px;
+
+.theme-toggle-btn {
+  margin-top: auto;
+  margin-bottom: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--nextui-colors-backgroundAlpha);
+}
+
+.sidebar-menu {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 20px;
+}
+
   }
   50% {
     height: 40px;

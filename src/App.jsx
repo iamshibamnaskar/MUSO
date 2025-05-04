@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import './App.css';
-import { Navbar, NavbarBrand, NavbarContent, Input } from "@nextui-org/react";
+import { Navbar, NavbarBrand, NavbarContent, Input, Button } from "@nextui-org/react";
+import { SunIcon } from './components/SunIcon';
+import { MoonIcon } from './components/MoonIcon';
 import TopPicks from './components/TopPicks';
 import MusicPlayer from './components/Player';
 import GridList from './components/GridList';
@@ -41,6 +43,12 @@ export default function App() {
   const [isSearching, setIsSearching] = useState(false);
   const [showFavorites, setShowFavorites] = useState(false);
   const [songsList, setSongsList] = useState([]);
+  const [isDark, setIsDark] = useState(true);
+
+  useEffect(() => {
+    document.documentElement.classList.toggle('dark', isDark);
+    document.documentElement.classList.toggle('light', !isDark);
+  }, [isDark]);
   const { isPlayerOpen, currentSong, setPlayerOpen, setCurrentSong } = usePlayerStore();
 
   useEffect(() => {
@@ -81,6 +89,14 @@ export default function App() {
         <div className="sidebar-menu">
           <a href="#" className={`sidebar-item ${!showFavorites ? 'active' : ''}`} onClick={() => setShowFavorites(false)}>Home</a>
           <a href="#" className={`sidebar-item ${showFavorites ? 'active' : ''}`} onClick={() => setShowFavorites(true)}>Favorites</a>
+          <Button
+            className="theme-toggle-btn"
+            isIconOnly
+            variant="light"
+            onClick={() => setIsDark(!isDark)}
+          >
+            {isDark ? <SunIcon /> : <MoonIcon />}
+          </Button>
         </div>
       </div>
 

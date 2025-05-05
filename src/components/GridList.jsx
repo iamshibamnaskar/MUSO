@@ -1,13 +1,12 @@
-
 import { Card, CardBody, Image } from "@nextui-org/react";
 import { useEffect, useState } from "react";
 import LoadingSpinner from "./LoadingSpinner";
 import YouTubeAPI from "../api/api";
 import usePlayerStore from "../usePlayerStore";
 
-export default function GridList() {
-  const [list, setList] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+export default function GridList({ initialSongs = [] }) {
+  const [list, setList] = useState(initialSongs);
+  const [isLoading, setIsLoading] = useState(!initialSongs.length);
   const { setPlayerOpen, setCurrentSong } = usePlayerStore();
 
   const getHomePage = async () => {
@@ -28,8 +27,10 @@ export default function GridList() {
   };
 
   useEffect(() => {
-    getHomePage();
-  }, []);
+    if (!initialSongs.length) {
+      getHomePage();
+    }
+  }, [initialSongs]);
 
   if (isLoading) {
     return <LoadingSpinner />;

@@ -14,11 +14,10 @@ class YouTubeAPI {
      * @param {string} videoUrl - The YouTube video URL
      * @returns {Promise<object>} - The video data
      */
-    static async getVideoDetails(videoUrl) {
-        const id = videoUrl.split("=")[1]
+    static async getNextVideos(videoUrl) {
         try {
-            const response = await axios.get(`${BASE_URL}/video`, {
-                params: { url: id },
+            const response = await axios.get(`${BASE_URL}/getnext`, {
+                params: { url: videoUrl },
             });
             return response.data;
         } catch (error) {

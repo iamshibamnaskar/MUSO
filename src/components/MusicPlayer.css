@@ -1,21 +1,26 @@
-
 .music-player {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  width: 300px;
+  width: 420px;
   z-index: 1000;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
 }
 
 .player-card {
   position: relative;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  border: none;
+  background: rgba(28, 28, 30, 0.7) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .player-content {
   position: relative;
-  background: rgba(0, 0, 0, 0.9);
+  background: transparent;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -25,16 +30,23 @@
 .song-info {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 16px;
   width: 100%;
 }
 
 .song-thumbnail {
-  width: 50px !important;
-  height: 50px !important;
+  width: 100px;
+  height: 100px;
+  min-width: 100px;
+  min-height: 100px;
   object-fit: cover;
-  border-radius: 4px;
-  flex-shrink: 0;
+  border-radius: 5px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease;
+}
+
+.song-thumbnail:hover {
+  transform: scale(1.05);
 }
 
 .loading-overlay {
@@ -44,36 +56,78 @@
   right: 0;
   bottom: 0;
   background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 10;
+  border-radius: 16px;
 }
 
 .song-details {
   flex: 1;
   min-width: 0;
+  padding-right: 8px;
+}
+
+.title-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .song-title {
-  font-size: 0.9rem;
+  font-size: 1rem;
+  font-weight: 600;
   margin: 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   width: 100%;
   color: #fff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.favorite-btn {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  height: 32px;
+}
+
+.favorite-btn:hover {
+  color: rgba(255, 255, 255, 0.9);
+  transform: scale(1.1);
+}
+
+.favorite-btn.favorited {
+  color: #ff4d4d;
+}
+
+.favorite-btn.favorited:hover {
+  color: #ff6b6b;
 }
 
 .time-display {
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   color: rgba(255, 255, 255, 0.6);
-  margin-top: 4px;
+  margin-top: 6px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .player-controls {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
 }
 
 .progress-bar {
@@ -84,7 +138,7 @@
   width: 100%;
   height: 4px;
   -webkit-appearance: none;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.2);
   border-radius: 2px;
   outline: none;
   cursor: pointer;
@@ -97,27 +151,75 @@
   background: white;
   border-radius: 50%;
   cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-.play-pause-btn {
-  background: none;
+.control-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.control-buttons button {
+  background: rgba(255, 255, 255, 0.1);
   border: none;
   color: white;
   cursor: pointer;
   padding: 8px;
   border-radius: 50%;
-  transition: background-color 0.2s;
-  margin: 0 auto;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
 }
 
-.play-pause-btn:hover {
-  background: rgba(255, 255, 255, 0.1);
+.control-buttons button:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+}
+
+.control-buttons button:active:not(:disabled) {
+  transform: scale(0.95);
+}
+
+.control-buttons button:disabled {
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.3);
+  cursor: not-allowed;
+  transform: none;
+}
+
+.play-pause-btn {
+  background: rgba(255, 255, 255, 0.1) !important;
+  width: 48px !important;
+  height: 48px !important;
+  min-width: 48px !important;
+  backdrop-filter: blur(5px) !important;
+  -webkit-backdrop-filter: blur(5px) !important;
+}
+
+.play-pause-btn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.2) !important;
+}
+
+.play-pause-btn:disabled {
+  background: rgba(255, 255, 255, 0.05) !important;
+  color: rgba(255, 255, 255, 0.3) !important;
+  cursor: not-allowed !important;
 }
 
 @keyframes rotate {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }

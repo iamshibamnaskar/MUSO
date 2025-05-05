@@ -15,7 +15,7 @@ const MusicPlayer = ({ isOpen, songUrl }) => {
   const [duration, setDuration] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [title, setTitle] = useState("Now Playing");
-  const [thumbnail, setThumbnail] = useState("https://i.imgur.com/QuXh5sN.png");
+  const [thumbnail, setThumbnail] = useState("https://raw.githubusercontent.com/iamshibamnaskar/MUSO/refs/heads/main/src/assets/logo.png");
   const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
   const currentUrl = playlist[currentTrackIndex];
   const { currentThumbnail } = usePlayerStore();

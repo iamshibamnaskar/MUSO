@@ -50,21 +50,22 @@ const MusicPlayer = ({ isOpen, songUrl }) => {
   return (
     <div className="music-player">
       <Card className="player-card">
-        <CardBody>
+        <CardBody className="p-0">
+          <div 
+            className="player-background"
+            style={{
+              backgroundImage: `url(${thumbnail})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center'
+            }}
+          />
           <div className="player-content">
             <div className="song-info">
-              <div className="thumbnail-container">
-                <Image
-                  src={thumbnail}
-                  alt="Song thumbnail"
-                  className={`song-thumbnail ${isPlaying ? "rotating" : ""}`}
-                />
-                {isLoading && (
-                  <div className="loading-overlay">
-                    <Spinner color="white" size="lg" />
-                  </div>
-                )}
-              </div>
+              {isLoading && (
+                <div className="loading-overlay">
+                  <Spinner color="white" size="lg" />
+                </div>
+              )}
               <div className="song-details">
                 <h3 className="song-title">{title}</h3>
                 <div className="time-display">

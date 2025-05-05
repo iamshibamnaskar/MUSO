@@ -8,42 +8,41 @@
 }
 
 .player-card {
-  background: rgba(20, 20, 20, 0.95) !important;
-  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+.player-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  filter: blur(8px);
+  transform: scale(1.1);
+  opacity: 0.3;
+  transition: background-image 0.3s ease;
+}
+
 .player-content {
+  position: relative;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
   display: flex;
   flex-direction: column;
   gap: 16px;
+  padding: 16px;
 }
 
 .song-info {
   display: flex;
-  align-items: center;
-  gap: 12px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
   width: 100%;
-}
-
-.thumbnail-container {
-  position: relative;
-  min-width: 60px;
-  width: 60px;
-  height: 60px;
-  border-radius: 12px;
-  overflow: hidden;
-  flex-shrink: 0;
-}
-
-.song-thumbnail {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.song-thumbnail.rotating {
-  animation: rotate 20s linear infinite;
 }
 
 .loading-overlay {

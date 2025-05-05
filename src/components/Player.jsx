@@ -118,6 +118,7 @@ const MusicPlayer = ({ isOpen, songUrl }) => {
           var internalPlayer = player.getInternalPlayer();
           var videoData = internalPlayer.getVideoData();
           setTitle(internalPlayer.getVideoData().title);
+          setThumbnail(`https://img.youtube.com/vi/${videoData.video_id}/0.jpg`)
           console.log("Internal Player:", player.getInternalPlayer());
           console.log("Video Data:", videoData);
         }}

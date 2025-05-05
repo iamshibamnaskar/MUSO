@@ -145,7 +145,7 @@ export default function App() {
       <div className="sidebar">
         <Navbar>
           <NavbarBrand className="py-4 px-6">
-            <img src="/src/assets/logo.png" alt="MUSO" className="logo-image" />
+            <img src="https://raw.githubusercontent.com/iamshibamnaskar/MUSO/refs/heads/main/src/assets/logo.png" alt="MUSO" className="logo-image" />
           </NavbarBrand>
         </Navbar>
         <div className="sidebar-menu">

@@ -106,27 +106,24 @@ const MusicPlayer = ({ isOpen, songUrl }) => {
         ref={playerRef}
         url={songUrl}
         playing={isPlaying}
-        onProgress={(state) => {
-          console.log("Progress:", state);
-          handleProgress(state);
-        }}
-        onDuration={(duration) => {
-          console.log("Duration:", duration);
-          handleDuration(duration);
-        }}
+        light={thumbnail}
+        onProgress={handleProgress}
+        onDuration={handleDuration}
         onReady={(player) => {
           console.log("Player Ready:", player);
-          console.log("Player Config:", player.getConfig());
-          console.log("Internal Player:", player.getInternalPlayer());
+          setIsLoading(false);
         }}
-        onStart={() => console.log("Playback Started")}
-        onPlay={() => console.log("Playing")}
-        onPause={() => console.log("Paused")}
-        onBuffer={() => console.log("Buffering")}
-        onSeek={(seconds) => console.log("Seek to:", seconds)}
+        onPlay={() => setIsPlaying(true)}
+        onPause={() => setIsPlaying(false)}
         onError={(error) => console.log("Player Error:", error)}
-        onEnded={() => console.log("Playback Ended")}
-        style={{ display: "none" }}
+        width="100%"
+        height="100%"
+        style={{ position: 'absolute', top: 0, left: 0 }}
+        config={{
+          youtube: {
+            playerVars: { showinfo: 1 }
+          }
+        }}
       />
     </div>
   );

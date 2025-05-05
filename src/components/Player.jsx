@@ -1,8 +1,8 @@
-import React, { useRef, useState, useEffect } from 'react';
-import ReactPlayer from 'react-player';
-import './MusicPlayer.css';
+import React, { useRef, useState, useEffect } from "react";
+import ReactPlayer from "react-player";
+import "./MusicPlayer.css";
 import { Card, CardBody, Image, Spinner } from "@nextui-org/react";
-import usePlayerStore from '../usePlayerStore'; 
+import usePlayerStore from "../usePlayerStore";
 
 const MusicPlayer = ({ isOpen, songUrl }) => {
   const playerRef = useRef(null);
@@ -42,7 +42,7 @@ const MusicPlayer = ({ isOpen, songUrl }) => {
   const formatTime = (time) => {
     const minutes = Math.floor(time / 60);
     const seconds = Math.floor(time % 60);
-    return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+    return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
   };
 
   if (!isOpen) return null;
@@ -57,7 +57,7 @@ const MusicPlayer = ({ isOpen, songUrl }) => {
                 <Image
                   src={thumbnail}
                   alt="Song thumbnail"
-                  className={`song-thumbnail ${isPlaying ? 'rotating' : ''}`}
+                  className={`song-thumbnail ${isPlaying ? "rotating" : ""}`}
                 />
                 {isLoading && (
                   <div className="loading-overlay">
@@ -88,9 +88,12 @@ const MusicPlayer = ({ isOpen, songUrl }) => {
               <button className="play-pause-btn" onClick={togglePlayPause}>
                 <svg viewBox="0 0 24 24" width="24" height="24">
                   {isPlaying ? (
-                    <path fill="currentColor" d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+                    <path
+                      fill="currentColor"
+                      d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"
+                    />
                   ) : (
-                    <path fill="currentColor" d="M8 5v14l11-7z"/>
+                    <path fill="currentColor" d="M8 5v14l11-7z" />
                   )}
                 </svg>
               </button>
@@ -105,7 +108,7 @@ const MusicPlayer = ({ isOpen, songUrl }) => {
         playing={isPlaying}
         onProgress={handleProgress}
         onDuration={handleDuration}
-        style={{ display: 'none' }}
+        style={{ display: "none" }}
       />
     </div>
   );

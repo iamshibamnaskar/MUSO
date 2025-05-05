@@ -106,8 +106,26 @@ const MusicPlayer = ({ isOpen, songUrl }) => {
         ref={playerRef}
         url={songUrl}
         playing={isPlaying}
-        onProgress={handleProgress}
-        onDuration={handleDuration}
+        onProgress={(state) => {
+          console.log("Progress:", state);
+          handleProgress(state);
+        }}
+        onDuration={(duration) => {
+          console.log("Duration:", duration);
+          handleDuration(duration);
+        }}
+        onReady={(player) => {
+          console.log("Player Ready:", player);
+          console.log("Player Config:", player.getConfig());
+          console.log("Internal Player:", player.getInternalPlayer());
+        }}
+        onStart={() => console.log("Playback Started")}
+        onPlay={() => console.log("Playing")}
+        onPause={() => console.log("Paused")}
+        onBuffer={() => console.log("Buffering")}
+        onSeek={(seconds) => console.log("Seek to:", seconds)}
+        onError={(error) => console.log("Player Error:", error)}
+        onEnded={() => console.log("Playback Ended")}
         style={{ display: "none" }}
       />
     </div>

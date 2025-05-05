@@ -51,14 +51,6 @@ const MusicPlayer = ({ isOpen, songUrl }) => {
     <div className="music-player">
       <Card className="player-card">
         <CardBody className="p-0">
-          <div 
-            className="player-background"
-            style={{
-              backgroundImage: `url(${thumbnail})`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center'
-            }}
-          />
           <div className="player-content">
             <div className="song-info">
               {isLoading && (
@@ -66,6 +58,13 @@ const MusicPlayer = ({ isOpen, songUrl }) => {
                   <Spinner color="white" size="lg" />
                 </div>
               )}
+              <Image
+                src={thumbnail}
+                alt="Thumbnail"
+                className="song-thumbnail"
+                width={50}
+                height={50}
+              />
               <div className="song-details">
                 <h3 className="song-title">{title}</h3>
                 <div className="time-display">
